@@ -37,8 +37,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False) # Is able to login to admin area
+    is_staff = models.BooleanField(default=False)  # Is able to login to admin area
 
-    objects = UserManager() # Assingn the User Manager
+    objects = UserManager()  # Assingn the User Manager
 
-    USERNAME_FIELD = "email" # The field will be used for authentification
+    USERNAME_FIELD = "email"  # The field will be used for authentification
