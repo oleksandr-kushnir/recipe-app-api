@@ -122,7 +122,7 @@ class PrivateRecipeAPITests(TestCase):
         recipe = Recipe.objects.get(id=res.data["id"])
         for k, v in payload.items():
             self.assertEqual(
-                getattr(recipe, k), # "getattr(recipe, "i")" is equivalent to "recipe.i"
+                getattr(recipe, k),  # "getattr(recipe, "i")" = "recipe.i"
                 v)
         self.assertEqual(recipe.user, self.user)
 
