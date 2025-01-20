@@ -64,8 +64,10 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """Create a recipe."""
-        tags = validated_data.pop("tags", [])  # will be assigned as a related field
+        # will be assigned as a related field
+        tags = validated_data.pop("tags", [])
         ingredients = validated_data.pop("ingredients", [])
+
         recipe = Recipe.objects.create(**validated_data)
         self._get_or_create_tags(tags, recipe)
         self._get_or_create_ingredients(ingredients, recipe)
@@ -82,8 +84,8 @@ class RecipeSerializer(serializers.ModelSerializer):
         if ingredients is not None:
             instance.ingredients.clear()
             self._get_or_create_ingredients(ingredients, instance)
-            
-        for attr, value  in validated_data.items():
+
+        for attr, value in validated_data.items():
             setattr(instance, attr, value)
 
         instance.save()
