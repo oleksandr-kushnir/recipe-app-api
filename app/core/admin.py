@@ -9,54 +9,38 @@ from core import models
 
 
 class UserAdmin(BaseUserAdmin):
-    """Define the amin pages for users."""
-    ordering = ["id"]
-    list_display = ["email", "name"]
+    """Define the admin pages for users."""
+    ordering = ['id']
+    list_display = ['email', 'name']
     fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        (_('Personal Info'), {'fields': ('name',)}),
         (
-            None,
+            _('Permissions'),
             {
-                "fields": ("email", "password")
-            }
-        ),
-        (
-            _("Permissions"),
-            {
-                "fields": (
-                    "is_active",
-                    "is_staff",
-                    "is_superuser",
+                'fields': (
+                    'is_active',
+                    'is_staff',
+                    'is_superuser',
                 )
             }
         ),
-        (
-            _("Important dates"),
-            {
-                "fields": (
-                    "last_login",
-                )
-            }
-        ),
+        (_('Important dates'), {'fields': ('last_login',)}),
     )
-    readonly_fields = ["last_login"]
+    readonly_fields = ['last_login']
     add_fieldsets = (
-        (
-            None,
-            {
-                "classes": (
-                    "wide",
-                ),
-                "fields": (
-                    "email",
-                    "password1",
-                    "password2",
-                    "name",
-                    "is_active",
-                    "is_staff",
-                    "is_superuser",
-                )
-            }
-        ),
+        (None, {
+            'classes': ('wide',),
+            'fields': (
+                'email',
+                'password1',
+                'password2',
+                'name',
+                'is_active',
+                'is_staff',
+                'is_superuser',
+            ),
+        }),
     )
 
 
